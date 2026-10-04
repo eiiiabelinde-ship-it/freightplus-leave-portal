@@ -1,0 +1,2996 @@
+/* =========================================================
+   FREIGHTPLUS TEMPORARY LEAVE REQUEST PORTAL
+========================================================= */
+
+:root {
+
+  --brand: #6a1758;
+  --brand-dark: #4c0e40;
+
+  --brand-soft: #f5eaf2;
+  --brand-soft-2: #fbf7fa;
+
+  --ink: #201b20;
+
+  --muted: #746d74;
+  --muted-light: #9b949a;
+
+  --line: #e8e2e6;
+  --line-dark: #dcd5da;
+
+  --page: #f7f5f7;
+
+  --white: #ffffff;
+
+  --green: #2e7d32;
+  --green-bg: #edf7ee;
+
+  --red: #b42318;
+  --red-bg: #fdeeee;
+
+  --shadow:
+    0 24px 70px
+    rgba(50, 22, 44, 0.09);
+
+  --shadow-small:
+    0 8px 28px
+    rgba(43, 23, 38, 0.05);
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+
+html {
+  min-height: 100%;
+}
+
+
+body {
+
+  margin: 0;
+
+  min-height: 100vh;
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color: var(--ink);
+
+  background:
+    radial-gradient(
+      circle at 5% 5%,
+      rgba(106, 23, 88, 0.07),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 95% 100%,
+      rgba(106, 23, 88, 0.05),
+      transparent 30%
+    ),
+    var(--page);
+
+}
+
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+
+button {
+  cursor: pointer;
+}
+
+
+svg {
+  display: block;
+}
+
+
+[hidden] {
+  display: none !important;
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.leave-page {
+  min-height: 100vh;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.site-header {
+
+  height: 76px;
+
+  display: flex;
+  align-items: center;
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 50;
+
+  background:
+    rgba(255, 255, 255, 0.82);
+
+  backdrop-filter:
+    blur(18px);
+
+  -webkit-backdrop-filter:
+    blur(18px);
+
+  border-bottom:
+    1px solid
+    rgba(232, 226, 230, 0.85);
+
+}
+
+
+.header-inner {
+
+  width:
+    min(
+      1180px,
+      calc(100% - 48px)
+    );
+
+  margin:
+    0 auto;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.brand-logo {
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  flex-shrink:
+    0;
+
+  text-decoration:
+    none;
+
+}
+
+
+.brand-logo img {
+
+  display:
+    block;
+
+  width:
+    190px;
+
+  max-height:
+    54px;
+
+  height:
+    auto;
+
+  object-fit:
+    contain;
+
+}
+
+
+/* =========================================================
+   HEADER LABEL
+========================================================= */
+
+.header-label {
+
+  padding:
+    7px 11px;
+
+  border:
+    1px solid
+    rgba(106, 23, 88, 0.11);
+
+  border-radius:
+    999px;
+
+  color:
+    var(--brand);
+
+  background:
+    var(--brand-soft);
+
+  font-size:
+    11px;
+
+  font-weight:
+    700;
+
+}
+
+
+/* =========================================================
+   FORM SHELL
+========================================================= */
+
+.form-shell {
+
+  width:
+    min(
+      790px,
+      calc(100% - 40px)
+    );
+
+  margin:
+    0 auto;
+
+  padding:
+    64px 0 70px;
+
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.form-intro {
+
+  max-width:
+    650px;
+
+  margin:
+    0 auto 38px;
+
+  text-align:
+    center;
+
+}
+
+
+.form-intro h1 {
+
+  margin:
+    0;
+
+  font-size:
+    clamp(
+      2.15rem,
+      5vw,
+      3.15rem
+    );
+
+  line-height:
+    1.08;
+
+  letter-spacing:
+    -0.045em;
+
+}
+
+
+.form-intro p {
+
+  max-width:
+    580px;
+
+  margin:
+    17px auto 0;
+
+  color:
+    var(--muted);
+
+  font-size:
+    14px;
+
+  line-height:
+    1.75;
+
+}
+
+
+/* =========================================================
+   PROGRESS WRAPPER
+========================================================= */
+
+.progress-wrapper {
+
+  width:
+    100%;
+
+  margin:
+    0 auto 32px;
+
+  position:
+    relative;
+
+}
+
+
+/* =========================================================
+   PROGRESS STEPS
+========================================================= */
+
+.progress-steps {
+
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  position:
+    relative;
+
+  z-index:
+    2;
+
+}
+
+
+/* =========================================================
+   INDIVIDUAL PROGRESS STEP
+========================================================= */
+
+.progress-step {
+
+  min-width:
+    0;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  position:
+    relative;
+
+  color:
+    var(--muted);
+
+  text-align:
+    center;
+
+  transition:
+    color 0.25s ease;
+
+}
+
+
+/* =========================================================
+   PROGRESS TEXT
+
+   Text stays ABOVE the circle.
+========================================================= */
+
+.step-copy {
+
+  width:
+    100%;
+
+  min-height:
+    42px;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  justify-content:
+    flex-end;
+
+  margin-bottom:
+    10px;
+
+}
+
+
+.step-copy strong {
+
+  display:
+    block;
+
+  font-size:
+    12px;
+
+  font-weight:
+    700;
+
+  line-height:
+    1.3;
+
+  white-space:
+    nowrap;
+
+}
+
+
+.step-copy small {
+
+  display:
+    block;
+
+  margin-top:
+    3px;
+
+  color:
+    var(--muted-light);
+
+  font-size:
+    10px;
+
+  line-height:
+    1.3;
+
+  white-space:
+    nowrap;
+
+}
+
+
+/* =========================================================
+   PROGRESS CIRCLES
+========================================================= */
+
+.step-number {
+
+  width:
+    38px;
+
+  height:
+    38px;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  flex:
+    0 0 auto;
+
+  position:
+    relative;
+
+  z-index:
+    4;
+
+  border:
+    1px solid
+    #ded7dc;
+
+  border-radius:
+    50%;
+
+  color:
+    var(--muted);
+
+  background:
+    var(--page);
+
+  font-size:
+    12px;
+
+  font-weight:
+    800;
+
+  transition:
+    color 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease;
+
+}
+
+
+/* =========================================================
+   PROGRESS TRACK
+
+   Line goes THROUGH THE CENTER
+   of the three circles.
+========================================================= */
+
+.progress-track {
+
+  position:
+    absolute;
+
+  left:
+    16.6667%;
+
+  right:
+    16.6667%;
+
+  bottom:
+    18px;
+
+  height:
+    2px;
+
+  z-index:
+    1;
+
+  overflow:
+    hidden;
+
+  background:
+    #e5dfe3;
+
+}
+
+
+/* =========================================================
+   FILLED PROGRESS LINE
+========================================================= */
+
+.progress-fill {
+
+  width:
+    0%;
+
+  height:
+    100%;
+
+  background:
+    var(--brand);
+
+  transition:
+    width 0.35s ease;
+
+}
+
+
+/* =========================================================
+   ACTIVE STEP
+
+   CURRENT step stays EMPTY.
+========================================================= */
+
+.progress-step.active {
+
+  color:
+    var(--brand);
+
+}
+
+
+.progress-step.active
+.step-number {
+
+  color:
+    var(--brand);
+
+  border-color:
+    var(--brand);
+
+  background:
+    var(--page);
+
+}
+
+
+/* =========================================================
+   COMPLETED STEP
+========================================================= */
+
+.progress-step.completed {
+
+  color:
+    var(--brand);
+
+}
+
+
+.progress-step.completed
+.step-number {
+
+  color:
+    transparent;
+
+  border-color:
+    var(--brand);
+
+  background:
+    var(--brand);
+
+}
+
+
+/* =========================================================
+   COMPLETED CHECKMARK
+========================================================= */
+
+/* =========================================================
+   COMPLETED STEP
+   Purple circle + clean white checkmark
+========================================================= */
+
+.progress-step.completed .step-number {
+
+  color: transparent;
+
+  border-color: var(--brand);
+
+  background: var(--brand);
+}
+
+
+/* White checkmark — drawn with CSS, not a text character */
+
+.progress-step.completed .step-number::after {
+
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: 47%;
+
+  width: 11px;
+  height: 6px;
+
+  border-left: 3px solid #ffffff;
+  border-bottom: 3px solid #ffffff;
+
+  border-radius: 1px;
+
+  transform:
+    translate(-50%, -50%)
+    rotate(-45deg);
+
+  transform-origin: center;
+}
+
+
+/* =========================================================
+   FORM CARD
+========================================================= */
+
+.form-card {
+
+  position:
+    relative;
+
+  overflow:
+    visible;
+
+  background:
+    rgba(255, 255, 255, 0.96);
+
+  border:
+    1px solid
+    rgba(232, 226, 230, 0.95);
+
+  border-radius:
+    24px;
+
+  box-shadow:
+    var(--shadow);
+
+}
+
+
+/* =========================================================
+   FORM PAGES
+========================================================= */
+
+.form-page {
+
+  display:
+    none;
+
+  padding:
+    34px;
+
+}
+
+
+.form-page.active {
+
+  display:
+    block;
+
+  animation:
+    pageEnter 0.3s ease;
+
+}
+
+
+@keyframes pageEnter {
+
+  from {
+
+    opacity:
+      0;
+
+    transform:
+      translateY(6px);
+
+  }
+
+  to {
+
+    opacity:
+      1;
+
+    transform:
+      translateY(0);
+
+  }
+
+}
+
+
+/* =========================================================
+   CARD HEADING
+========================================================= */
+
+.card-heading {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    13px;
+
+  padding-bottom:
+    25px;
+
+  margin-bottom:
+    25px;
+
+  border-bottom:
+    1px solid
+    var(--line);
+
+}
+
+
+.heading-icon {
+
+  width:
+    42px;
+
+  height:
+    42px;
+
+  flex:
+    0 0 auto;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  border-radius:
+    12px;
+
+  color:
+    var(--brand);
+
+  background:
+    var(--brand-soft);
+
+}
+
+
+.heading-icon svg {
+
+  width:
+    20px;
+
+  height:
+    20px;
+
+  fill:
+    none;
+
+  stroke:
+    currentColor;
+
+  stroke-width:
+    1.8;
+
+  stroke-linecap:
+    round;
+
+  stroke-linejoin:
+    round;
+
+}
+
+
+.card-heading h2 {
+
+  margin:
+    0;
+
+  font-size:
+    18px;
+
+  letter-spacing:
+    -0.02em;
+
+}
+
+
+.card-heading p {
+
+  margin:
+    4px 0 0;
+
+  color:
+    var(--muted);
+
+  font-size:
+    12px;
+
+  line-height:
+    1.5;
+
+}
+
+
+/* =========================================================
+   FORM GRID
+========================================================= */
+
+.form-grid {
+
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  gap:
+    20px;
+
+}
+
+
+.field.full {
+
+  grid-column:
+    1 / -1;
+
+}
+
+
+/* =========================================================
+   FIELDS
+========================================================= */
+
+.field {
+
+  min-width:
+    0;
+
+}
+
+
+.field
+label:not(.upload-box) {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    4px;
+
+  margin-bottom:
+    8px;
+
+  color:
+    #3f393e;
+
+  font-size:
+    12px;
+
+  font-weight:
+    700;
+
+}
+
+
+.required {
+
+  color:
+    var(--brand);
+
+}
+
+
+.optional {
+
+  margin-left:
+    5px;
+
+  color:
+    var(--muted-light);
+
+  font-size:
+    10px;
+
+  font-weight:
+    500;
+
+}
+
+
+.field
+input:not([type="file"]),
+.field select,
+.field textarea {
+
+  width:
+    100%;
+
+  border:
+    1px solid
+    var(--line-dark);
+
+  border-radius:
+    11px;
+
+  outline:
+    none;
+
+  color:
+    var(--ink);
+
+  background:
+    #fff;
+
+  font-size:
+    13px;
+
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+
+}
+
+
+.field
+input:not([type="file"]),
+.field select {
+
+  height:
+    48px;
+
+  padding:
+    0 14px;
+
+}
+
+
+.field textarea {
+
+  min-height:
+    118px;
+
+  padding:
+    13px 14px;
+
+  line-height:
+    1.6;
+
+  resize:
+    vertical;
+
+}
+
+
+.field
+input::placeholder,
+.field
+textarea::placeholder {
+
+  color:
+    #aaa3a8;
+
+}
+
+
+.field
+input:focus,
+.field
+select:focus,
+.field
+textarea:focus {
+
+  border-color:
+    rgba(106, 23, 88, 0.72);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(106, 23, 88, 0.07);
+
+}
+
+
+.field
+input:disabled,
+.field
+select:disabled {
+
+  color:
+    #9d969b;
+
+  background:
+    #f6f4f5;
+
+  cursor:
+    not-allowed;
+
+}
+
+
+.field select {
+
+  appearance:
+    none;
+
+  cursor:
+    pointer;
+
+  padding-right:
+    42px;
+
+}
+
+
+.select-wrap {
+
+  position:
+    relative;
+
+}
+
+
+.select-wrap::after {
+
+  content:
+    "";
+
+  position:
+    absolute;
+
+  right:
+    17px;
+
+  top:
+    50%;
+
+  width:
+    6px;
+
+  height:
+    6px;
+
+  border-right:
+    1.5px solid
+    #756d73;
+
+  border-bottom:
+    1.5px solid
+    #756d73;
+
+  transform:
+    translateY(-70%)
+    rotate(45deg);
+
+  pointer-events:
+    none;
+
+}
+
+
+.field-help {
+
+  margin-top:
+    7px;
+
+  color:
+    var(--muted-light);
+
+  font-size:
+    10px;
+
+}
+
+
+/* =========================================================
+   VALIDATION
+========================================================= */
+
+.field
+input.field-error,
+.field
+select.field-error,
+.field
+textarea.field-error,
+.multi-select-control.field-error {
+
+  border-color:
+    var(--red);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(180, 35, 24, 0.07);
+
+}
+
+
+.field-error-message {
+
+  margin-top:
+    6px;
+
+  color:
+    var(--red);
+
+  font-size:
+    10px;
+
+  font-weight:
+    600;
+
+  line-height:
+    1.4;
+
+}
+
+
+.field-error-message:empty {
+
+  display:
+    none;
+
+}
+
+
+.form-error-message {
+
+  margin-top:
+    18px;
+
+  padding:
+    11px 13px;
+
+  border:
+    1px solid
+    #efcbc7;
+
+  border-radius:
+    10px;
+
+  color:
+    var(--red);
+
+  background:
+    var(--red-bg);
+
+  font-size:
+    11px;
+
+  font-weight:
+    600;
+
+  line-height:
+    1.5;
+
+}
+
+
+/* =========================================================
+   TRUCK MULTI SELECT
+========================================================= */
+
+.truck-field[hidden] {
+
+  display:
+    none;
+
+}
+
+
+.multi-select {
+
+  position:
+    relative;
+
+}
+
+
+.multi-select-control {
+
+  width:
+    100%;
+
+  min-height:
+    48px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    12px;
+
+  padding:
+    7px 12px;
+
+  border:
+    1px solid
+    var(--line-dark);
+
+  border-radius:
+    11px;
+
+  color:
+    var(--ink);
+
+  background:
+    #fff;
+
+  text-align:
+    left;
+
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+
+}
+
+
+.multi-select.open
+.multi-select-control {
+
+  border-color:
+    rgba(106, 23, 88, 0.72);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(106, 23, 88, 0.07);
+
+}
+
+
+.selected-trucks {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  flex-wrap:
+    wrap;
+
+  gap:
+    5px;
+
+  min-width:
+    0;
+
+}
+
+
+.multi-placeholder {
+
+  padding-left:
+    2px;
+
+  color:
+    #aaa3a8;
+
+  font-size:
+    13px;
+
+}
+
+
+.truck-chip {
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    5px;
+
+  padding:
+    5px 8px;
+
+  border-radius:
+    7px;
+
+  color:
+    var(--brand);
+
+  background:
+    var(--brand-soft);
+
+  font-size:
+    11px;
+
+  font-weight:
+    700;
+
+}
+
+
+.truck-chip-remove {
+
+  width:
+    15px;
+
+  height:
+    15px;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  padding:
+    0;
+
+  border:
+    0;
+
+  border-radius:
+    50%;
+
+  color:
+    var(--brand);
+
+  background:
+    transparent;
+
+  font-size:
+    13px;
+
+  line-height:
+    1;
+
+}
+
+
+.truck-chip-remove:hover {
+
+  background:
+    rgba(106, 23, 88, 0.09);
+
+}
+
+
+.select-chevron svg {
+
+  width:
+    17px;
+
+  height:
+    17px;
+
+  fill:
+    none;
+
+  stroke:
+    var(--muted);
+
+  stroke-width:
+    1.8;
+
+  stroke-linecap:
+    round;
+
+  stroke-linejoin:
+    round;
+
+  transition:
+    transform 0.2s ease;
+
+}
+
+
+.multi-select.open
+.select-chevron svg {
+
+  transform:
+    rotate(180deg);
+
+}
+
+
+/* =========================================================
+   TRUCK DROPDOWN
+========================================================= */
+
+.multi-dropdown {
+
+  display:
+    none;
+
+  position:
+    absolute;
+
+  left:
+    0;
+
+  right:
+    0;
+
+  top:
+    calc(100% + 7px);
+
+  z-index:
+    30;
+
+  overflow:
+    hidden;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:
+    13px;
+
+  background:
+    #fff;
+
+  box-shadow:
+    0 18px 45px
+    rgba(50, 22, 44, 0.14);
+
+}
+
+
+.multi-select.open
+.multi-dropdown {
+
+  display:
+    block;
+
+  animation:
+    dropdownEnter 0.16s ease;
+
+}
+
+
+@keyframes dropdownEnter {
+
+  from {
+
+    opacity:
+      0;
+
+    transform:
+      translateY(-4px);
+
+  }
+
+  to {
+
+    opacity:
+      1;
+
+    transform:
+      translateY(0);
+
+  }
+
+}
+
+
+.truck-search-wrap {
+
+  position:
+    relative;
+
+  padding:
+    10px;
+
+  border-bottom:
+    1px solid
+    var(--line);
+
+}
+
+
+.truck-search-wrap input {
+
+  height:
+    40px !important;
+
+  padding-left:
+    36px !important;
+
+  background:
+    #faf8fa !important;
+
+}
+
+
+.search-icon {
+
+  width:
+    16px;
+
+  height:
+    16px;
+
+  position:
+    absolute;
+
+  left:
+    22px;
+
+  top:
+    50%;
+
+  z-index:
+    2;
+
+  transform:
+    translateY(-50%);
+
+  fill:
+    none;
+
+  stroke:
+    var(--muted);
+
+  stroke-width:
+    1.8;
+
+  stroke-linecap:
+    round;
+
+}
+
+
+.truck-options {
+
+  max-height:
+    220px;
+
+  overflow-y:
+    auto;
+
+  padding:
+    6px;
+
+}
+
+
+.truck-option {
+
+  width:
+    100%;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    10px;
+
+  padding:
+    10px;
+
+  border:
+    0;
+
+  border-radius:
+    8px;
+
+  color:
+    #433c41;
+
+  background:
+    transparent;
+
+  text-align:
+    left;
+
+  font-size:
+    12px;
+
+}
+
+
+.truck-option:hover {
+
+  background:
+    var(--brand-soft-2);
+
+}
+
+
+.truck-option.selected {
+
+  color:
+    var(--brand);
+
+  background:
+    var(--brand-soft);
+
+}
+
+
+.truck-checkbox {
+
+  width:
+    17px;
+
+  height:
+    17px;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  flex:
+    0 0 auto;
+
+  border:
+    1px solid
+    #cfc7cc;
+
+  border-radius:
+    5px;
+
+  background:
+    #fff;
+
+}
+
+
+.truck-option.selected
+.truck-checkbox {
+
+  color:
+    #fff;
+
+  border-color:
+    var(--brand);
+
+  background:
+    var(--brand);
+
+}
+
+
+.truck-option.selected
+.truck-checkbox::after {
+
+  content:
+    "✓";
+
+  font-size:
+    10px;
+
+  font-weight:
+    800;
+
+}
+
+
+.no-trucks {
+
+  padding:
+    18px;
+
+  color:
+    var(--muted);
+
+  text-align:
+    center;
+
+  font-size:
+    11px;
+
+}
+
+
+/* =========================================================
+   UPLOAD
+========================================================= */
+
+.upload-box {
+
+  min-height:
+    125px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    13px;
+
+  padding:
+    22px;
+
+  border:
+    1.5px dashed
+    #d7cbd3;
+
+  border-radius:
+    14px;
+
+  background:
+    var(--brand-soft-2);
+
+  cursor:
+    pointer;
+
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease;
+
+}
+
+
+.upload-box:hover {
+
+  border-color:
+    rgba(106, 23, 88, 0.5);
+
+  background:
+    var(--brand-soft);
+
+}
+
+
+.upload-box input {
+
+  display:
+    none;
+
+}
+
+
+.upload-icon {
+
+  width:
+    42px;
+
+  height:
+    42px;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  flex:
+    0 0 auto;
+
+  border-radius:
+    11px;
+
+  color:
+    var(--brand);
+
+  background:
+    #fff;
+
+  box-shadow:
+    0 5px 15px
+    rgba(50, 22, 44, 0.06);
+
+}
+
+
+.upload-icon svg {
+
+  width:
+    20px;
+
+  height:
+    20px;
+
+  fill:
+    none;
+
+  stroke:
+    currentColor;
+
+  stroke-width:
+    1.7;
+
+  stroke-linecap:
+    round;
+
+  stroke-linejoin:
+    round;
+
+}
+
+
+.upload-copy strong,
+.upload-copy span {
+
+  display:
+    block;
+
+}
+
+
+.upload-copy strong {
+
+  color:
+    #433c41;
+
+  font-size:
+    12px;
+
+}
+
+
+.upload-copy span {
+
+  margin-top:
+    4px;
+
+  color:
+    var(--muted);
+
+  font-size:
+    10px;
+
+}
+
+
+/* =========================================================
+   FILE PREVIEW
+========================================================= */
+
+.file-preview {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    11px;
+
+  margin-top:
+    10px;
+
+  padding:
+    11px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:
+    11px;
+
+  background:
+    #fff;
+
+}
+
+
+.file-preview[hidden] {
+
+  display:
+    none;
+
+}
+
+
+.file-preview-icon {
+
+  width:
+    36px;
+
+  height:
+    36px;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  flex:
+    0 0 auto;
+
+  border-radius:
+    9px;
+
+  color:
+    var(--brand);
+
+  background:
+    var(--brand-soft);
+
+}
+
+
+.file-preview-icon svg {
+
+  width:
+    17px;
+
+  height:
+    17px;
+
+  fill:
+    none;
+
+  stroke:
+    currentColor;
+
+  stroke-width:
+    1.7;
+
+  stroke-linecap:
+    round;
+
+  stroke-linejoin:
+    round;
+
+}
+
+
+.file-preview-copy {
+
+  min-width:
+    0;
+
+  flex:
+    1;
+
+}
+
+
+.file-preview-copy strong,
+.file-preview-copy span {
+
+  display:
+    block;
+
+}
+
+
+.file-preview-copy strong {
+
+  overflow:
+    hidden;
+
+  color:
+    #403a3e;
+
+  font-size:
+    11px;
+
+  text-overflow:
+    ellipsis;
+
+  white-space:
+    nowrap;
+
+}
+
+
+.file-preview-copy span {
+
+  margin-top:
+    3px;
+
+  color:
+    var(--muted);
+
+  font-size:
+    9px;
+
+}
+
+
+.remove-file {
+
+  width:
+    30px;
+
+  height:
+    30px;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  border:
+    0;
+
+  border-radius:
+    8px;
+
+  color:
+    var(--muted);
+
+  background:
+    transparent;
+
+  font-size:
+    19px;
+
+}
+
+
+.remove-file:hover {
+
+  color:
+    var(--red);
+
+  background:
+    var(--red-bg);
+
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.form-actions {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    10px;
+
+  margin-top:
+    30px;
+
+  padding-top:
+    23px;
+
+  border-top:
+    1px solid
+    var(--line);
+
+}
+
+
+.form-actions.first-page {
+
+  justify-content:
+    flex-end;
+
+}
+
+
+.btn {
+
+  min-height:
+    46px;
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    7px;
+
+  padding:
+    0 18px;
+
+  border:
+    1px solid transparent;
+
+  border-radius:
+    11px;
+
+  font-size:
+    12px;
+
+  font-weight:
+    800;
+
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+
+}
+
+
+.btn svg {
+
+  width:
+    16px;
+
+  height:
+    16px;
+
+  fill:
+    none;
+
+  stroke:
+    currentColor;
+
+  stroke-width:
+    2;
+
+  stroke-linecap:
+    round;
+
+  stroke-linejoin:
+    round;
+
+}
+
+
+.btn-primary {
+
+  color:
+    #fff;
+
+  background:
+    var(--brand);
+
+  box-shadow:
+    0 7px 17px
+    rgba(106, 23, 88, 0.16);
+
+}
+
+
+.btn-primary:hover {
+
+  background:
+    var(--brand-dark);
+
+  transform:
+    translateY(-1px);
+
+  box-shadow:
+    0 9px 21px
+    rgba(106, 23, 88, 0.2);
+
+}
+
+
+.btn-primary:disabled {
+
+  opacity:
+    0.65;
+
+  cursor:
+    not-allowed;
+
+  transform:
+    none;
+
+}
+
+
+.btn-secondary {
+
+  color:
+    #50494e;
+
+  border-color:
+    var(--line-dark);
+
+  background:
+    #fff;
+
+}
+
+
+.btn-secondary:hover {
+
+  color:
+    var(--brand);
+
+  border-color:
+    rgba(106, 23, 88, 0.4);
+
+  background:
+    var(--brand-soft-2);
+
+}
+
+
+/* =========================================================
+   BUTTON SPINNER
+========================================================= */
+
+.button-spinner {
+
+  width:
+    15px;
+
+  height:
+    15px;
+
+  border:
+    2px solid
+    rgba(255, 255, 255, 0.35);
+
+  border-top-color:
+    #fff;
+
+  border-radius:
+    50%;
+
+  animation:
+    spin 0.7s linear infinite;
+
+}
+
+
+@keyframes spin {
+
+  to {
+
+    transform:
+      rotate(360deg);
+
+  }
+
+}
+
+
+/* =========================================================
+   PAGE 3 — SUBMITTED
+========================================================= */
+
+.submitted-page {
+
+  padding:
+    48px 34px;
+
+}
+
+
+.submitted-content {
+
+  width:
+    min(520px, 100%);
+
+  margin:
+    0 auto;
+
+  text-align:
+    center;
+
+}
+
+
+.submitted-icon {
+
+  width:
+    64px;
+
+  height:
+    64px;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  margin:
+    0 auto 18px;
+
+  border-radius:
+    50%;
+
+  color:
+    #fff;
+
+  background:
+    var(--brand);
+
+  box-shadow:
+    0 10px 28px
+    rgba(106, 23, 88, 0.18);
+
+}
+
+
+.submitted-icon svg {
+
+  width:
+    29px;
+
+  height:
+    29px;
+
+  fill:
+    none;
+
+  stroke:
+    currentColor;
+
+  stroke-width:
+    2.2;
+
+  stroke-linecap:
+    round;
+
+  stroke-linejoin:
+    round;
+
+}
+
+
+.submitted-kicker {
+
+  margin-bottom:
+    9px;
+
+  color:
+    var(--brand);
+
+  font-size:
+    9px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.14em;
+
+}
+
+
+.submitted-content h2 {
+
+  margin:
+    0;
+
+  font-size:
+    29px;
+
+  letter-spacing:
+    -0.035em;
+
+}
+
+
+.submitted-message {
+
+  max-width:
+    440px;
+
+  margin:
+    12px auto 25px;
+
+  color:
+    var(--muted);
+
+  font-size:
+    12px;
+
+  line-height:
+    1.75;
+
+}
+
+
+/* =========================================================
+   SUBMITTED SUMMARY
+========================================================= */
+
+.success-summary {
+
+  display:
+    grid;
+
+  gap:
+    1px;
+
+  overflow:
+    hidden;
+
+  margin:
+    0 auto 25px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:
+    13px;
+
+  background:
+    var(--line);
+
+  text-align:
+    left;
+
+}
+
+
+.success-summary div {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    20px;
+
+  padding:
+    12px 14px;
+
+  background:
+    var(--brand-soft-2);
+
+}
+
+
+.success-summary span {
+
+  color:
+    var(--muted);
+
+  font-size:
+    10px;
+
+}
+
+
+.success-summary strong {
+
+  color:
+    #403a3e;
+
+  font-size:
+    10px;
+
+  text-align:
+    right;
+
+}
+
+
+.success-summary
+.pending-status {
+
+  padding:
+    5px 8px;
+
+  border-radius:
+    999px;
+
+  color:
+    var(--brand);
+
+  background:
+    var(--brand-soft);
+
+  font-weight:
+    800;
+
+}
+
+
+.submit-another-btn {
+
+  min-width:
+    190px;
+
+}
+
+
+/* =========================================================
+   PRIVACY
+========================================================= */
+
+.privacy-note {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    7px;
+
+  margin-top:
+    20px;
+
+  color:
+    #918990;
+
+  font-size:
+    10px;
+
+  text-align:
+    center;
+
+}
+
+
+.privacy-note svg {
+
+  width:
+    13px;
+
+  height:
+    13px;
+
+  flex:
+    0 0 auto;
+
+  fill:
+    none;
+
+  stroke:
+    currentColor;
+
+  stroke-width:
+    1.8;
+
+  stroke-linecap:
+    round;
+
+  stroke-linejoin:
+    round;
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .site-header {
+
+    height:
+      68px;
+
+  }
+
+
+  .header-inner {
+
+    width:
+      calc(100% - 32px);
+
+  }
+
+
+  .brand-logo img {
+
+    width:
+      155px;
+
+  }
+
+
+  .form-shell {
+
+    width:
+      calc(100% - 28px);
+
+    padding:
+      43px 0 50px;
+
+  }
+
+
+  .form-intro {
+
+    margin-bottom:
+      30px;
+
+  }
+
+
+  .form-intro p {
+
+    font-size:
+      13px;
+
+  }
+
+
+  .form-page {
+
+    padding:
+      25px 20px;
+
+  }
+
+
+  .form-grid {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+
+  .field.full {
+
+    grid-column:
+      auto;
+
+  }
+
+
+  .step-copy strong {
+
+    font-size:
+      11px;
+
+  }
+
+
+  .step-copy small {
+
+    font-size:
+      9px;
+
+  }
+
+
+  .submitted-page {
+
+    padding:
+      40px 24px;
+
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .header-label {
+
+    font-size:
+      10px;
+
+  }
+
+
+  .brand-logo img {
+
+    width:
+      135px;
+
+  }
+
+
+  .form-shell {
+
+    width:
+      calc(100% - 20px);
+
+    padding-top:
+      34px;
+
+  }
+
+
+  .form-intro {
+
+    padding:
+      0 8px;
+
+  }
+
+
+  .form-intro h1 {
+
+    font-size:
+      2rem;
+
+  }
+
+
+  /* -----------------------------------------
+     MOBILE PROGRESS
+  ----------------------------------------- */
+
+  .progress-wrapper {
+
+    margin-bottom:
+      26px;
+
+  }
+
+
+  .step-copy {
+
+    min-height:
+      38px;
+
+    margin-bottom:
+      8px;
+
+  }
+
+
+  .step-copy strong {
+
+    font-size:
+      9px;
+
+  }
+
+
+  .step-copy small {
+
+    font-size:
+      8px;
+
+  }
+
+
+  .step-number {
+
+    width:
+      32px;
+
+    height:
+      32px;
+
+    font-size:
+      10px;
+
+  }
+
+
+  .progress-track {
+
+    bottom:
+      15px;
+
+  }
+
+
+  .progress-step.completed
+  .step-number::after {
+
+    font-size:
+      18px;
+
+  }
+
+
+  /* -----------------------------------------
+     CARD
+  ----------------------------------------- */
+
+  .form-card {
+
+    border-radius:
+      19px;
+
+  }
+
+
+  .form-page {
+
+    padding:
+      22px 16px;
+
+  }
+
+
+  .card-heading {
+
+    align-items:
+      flex-start;
+
+  }
+
+
+  .heading-icon {
+
+    width:
+      38px;
+
+    height:
+      38px;
+
+  }
+
+
+  /* -----------------------------------------
+     ACTIONS
+  ----------------------------------------- */
+
+  .form-actions {
+
+    display:
+      grid;
+
+    grid-template-columns:
+      1fr 1fr;
+
+  }
+
+
+  .form-actions.first-page {
+
+    display:
+      flex;
+
+  }
+
+
+  .form-actions.first-page
+  .btn {
+
+    width:
+      100%;
+
+  }
+
+
+  .form-actions
+  .btn {
+
+    width:
+      100%;
+
+  }
+
+
+  /* -----------------------------------------
+     SUBMITTED
+  ----------------------------------------- */
+
+  .submitted-page {
+
+    padding:
+      36px 17px;
+
+  }
+
+
+  .submitted-content h2 {
+
+    font-size:
+      25px;
+
+  }
+
+
+  .submitted-icon {
+
+    width:
+      58px;
+
+    height:
+      58px;
+
+  }
+
+
+  .success-summary div {
+
+    padding:
+      11px 12px;
+
+  }
+
+
+  .submit-another-btn {
+
+    width:
+      100%;
+
+  }
+
+}
