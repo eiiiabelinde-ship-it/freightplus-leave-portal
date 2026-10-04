@@ -10,7 +10,6 @@
 const SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbxj2vbOEkABtrq_83Kff1HMaDcg9jW_r-nbrg0NroWu5jTU3lmpfSad5R0FwpChLyo_/exec";
 
-  
 /* =========================================================
    TRUCK CONFIGURATION
 ========================================================= */
@@ -27,7 +26,7 @@ const TRUCKS = [
   "T33",
   "T36",
   "T38",
-  "T15",
+  "T40",
   "T41",
   "T42",
   "T45",
@@ -1550,7 +1549,147 @@ leaveForm.addEventListener(
   }
 );
 
+/* =========================================================
+   SUBMIT LEAVE REQUEST TO GOOGLE APPS SCRIPT
+========================================================= */
 
+leaveForm.addEventListener(
+  "submit",
+  async event => {
+
+    event.preventDefault();
+
+    formError.hidden = true;
+    formError.textContent = "";
+
+    /*
+     * Revalidate both pages before sending.
+     */
+    if (!validatePageOne()) {
+      goToPage(1);
+      return;
+    }
+
+    if (!validatePageTwo()) {
+      goToPage(2);
+      return;
+    }
+
+    /*
+     * Save these before the request because
+     * they are used on the success page.
+     */
+    const submissionData = {
+      fullName:
+        fullName.value.trim(),
+
+      email:
+        email.value.trim(),
+
+      department:
+        department.value,
+
+      assignedTrucks:
+        selectedTrucks.join(", "),
+
+      leaveType:
+        leaveType.value,
+
+      startDate:
+        startDate.value,
+
+      startTime:
+        startTime.value,
+
+      endDate:
+        endDate.value,
+
+      endTime:
+        endTime.value,
+
+      reason:
+        reason.value.trim(),
+
+      supportingDocument:
+        selectedFile
+          ? selectedFile.name
+          : ""
+    };
+
+    try {
+
+      setSubmitting(true);
+
+      const response =
+        await fetch(
+          SCRIPT_URL,
+          {
+            method: "POST",
+
+            /*
+             * Do not add a custom Content-Type header.
+             * Sending the JSON body this way avoids
+             * unnecessary CORS preflight with Apps Script.
+             */
+            body:
+              JSON.stringify(
+                submissionData
+              )
+          }
+        );
+
+      if (!response.ok) {
+        throw new Error(
+          `Server returned ${response.status}.`
+        );
+      }
+
+      const result =
+        await response.json();
+
+      /*
+       * Apps Script may return HTTP 200 even when
+       * our API reports a validation/duplicate error,
+       * so check result.success too.
+       */
+      if (!result.success) {
+
+        formError.textContent =
+          result.message ||
+          "The leave request could not be submitted.";
+
+        formError.hidden = false;
+
+        return;
+      }
+
+      /*
+       * Submission successfully reached Google Sheets.
+       */
+      populateSuccessSummary();
+
+      goToPage(3);
+
+    } catch (error) {
+
+      console.error(
+        "Leave submission error:",
+        error
+      );
+
+      formError.textContent =
+        "Unable to submit your leave request. Please check your connection and try again.";
+
+      formError.hidden = false;
+
+    } finally {
+
+      setSubmitting(false);
+
+    }
+
+  }
+);
 /* =========================================================
    SUBMITTING STATE
 ========================================================= */
