@@ -3,7 +3,14 @@
    PHASE 1 — FRONT END ONLY
 ========================================================= */
 
+/* =========================================================
+   GOOGLE APPS SCRIPT API
+========================================================= */
 
+const SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbxj2vbOEkABtrq_83Kff1HMaDcg9jW_r-nbrg0NroWu5jTU3lmpfSad5R0FwpChLyo_/exec";
+
+  
 /* =========================================================
    TRUCK CONFIGURATION
 ========================================================= */
@@ -28,8 +35,7 @@ const TRUCKS = [
   "T51",
   "T58",
   "T65",
-  "T66",
-  "T17"
+  "T66"
 ];
 
 
