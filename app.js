@@ -1481,7 +1481,7 @@ function validatePageTwo() {
 
 /* =========================================================
    FORM SUBMISSION
-   PHASE 1 — SIMULATION
+   GOOGLE APPS SCRIPT
 ========================================================= */
 
 leaveForm.addEventListener(
@@ -1515,70 +1515,76 @@ leaveForm.addEventListener(
     setSubmitting(true);
 
 
-    /*
-      Temporary Phase 1 submission.
+    try {
 
-      Replace this delay later with
-      your actual Supabase/API request.
-    */
+      const payload = {
+        fullName: fullName.value.trim(),
+        email: email.value.trim(),
+        department: department.value,
+        assignedTrucks:
+          department.value === "Operations"
+            ? selectedTrucks.join(", ")
+            : "",
+        leaveType: leaveType.value,
+        startDate: startDate.value,
+        startTime: startTime.value,
+        endDate: endDate.value,
+        endTime: endTime.value,
+        reason:
+          document.getElementById("reason")?.value.trim() || "",
+        supportingDocument: ""
+      };
 
-    const payload = {
-  fullName: formData.fullName,
-  email: formData.email,
-  department: formData.department,
-  assignedTrucks: formData.assignedTrucks || "",
-  leaveType: formData.leaveType,
-  startDate: formData.startDate,
-  startTime: formData.startTime,
-  endDate: formData.endDate,
-  endTime: formData.endTime,
-  reason: formData.reason || "",
-  supportingDocument: formData.supportingDocument || ""
-};
+      const response = await fetch(
+        SCRIPT_URL,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+          },
+          body: JSON.stringify(payload)
+        }
+      );
 
-const response = await fetch(SCRIPT_URL, {
-  method: "POST",
-  headers: {
-    "Content-Type": "text/plain;charset=utf-8"
-  },
-  body: JSON.stringify(payload)
-});
+      const result = await response.json();
 
-const result = await response.json();
+      if (!result.success) {
+        throw new Error(
+          result.message ||
+          "Unable to submit your leave request."
+        );
+      }
 
-if (!result.success) {
-  throw new Error(
-    result.message || "Unable to submit your leave request."
-  );
-}
+      console.log(
+        "Leave request saved:",
+        result
+      );
 
-console.log("Leave request saved:", result);
+      populateSuccessSummary();
 
+      setSubmitting(false);
 
-    /*
-      Populate the Step 3 summary
-      BEFORE changing pages.
-    */
+      goToPage(3);
 
-    populateSuccessSummary();
+    } catch (error) {
 
+      console.error(
+        "Leave submission error:",
+        error
+      );
 
-    setSubmitting(false);
+      setSubmitting(false);
 
+      formError.textContent =
+        error.message ||
+        "Unable to submit your leave request. Please try again.";
 
-    /*
-      Submission is now considered
-      successful.
+      formError.hidden = false;
 
-      Only NOW does Step 2 become
-      completed and the final line fill.
-    */
-
-    goToPage(3);
+    }
 
   }
 );
-
 
 /* =========================================================
    SUBMITTING STATE
