@@ -8,7 +8,7 @@
 ========================================================= */
 
 const SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbyP_Vb1temngIdUYvMeSfhGcJzD57LuciqgTodrXqw3EUeGPaKxbCcWqT30EB4NSNcl/exec";
+  "https://script.google.com/macros/s/AKfycbxI7xxpnOm7Vz5OGgYtVPDZNPhL7XgOWHq8hNGIhnNpCjVmQARSMkmEkyo5PR8SmOUj/exec";
 
 /* =========================================================
    TRUCK CONFIGURATION
